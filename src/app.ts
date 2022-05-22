@@ -16,10 +16,11 @@ class App {
         this.init()
     }
 
-    async init() {
+    private init() {
         console.log('Loading Server...')
-        this.allRoutes.configRoutes(this.app)
         this.configApp()
+        this.allRoutes.configRoutes(this.app)
+        this.listen()
     }
 
     private configApp(): void {
@@ -43,7 +44,9 @@ class App {
             )
             next()
         })
+    }
 
+    private listen() {
         this.app.listen(config.port, () =>
             console.log(`App listening on port: ${config.port}`)
         )
